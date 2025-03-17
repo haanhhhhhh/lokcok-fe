@@ -48,8 +48,8 @@ const featuredKOLs = [
 const trendingProducts = [
   {
     id: 1,
-    name: 'Áo thun basic',
-    image: '/product1.jpg',
+    name: 'Mũ ngầu lòi',
+    image: '/product11.jpg',
     price: '199.000đ',
     rating: 4.5,
     reviews: 128,
@@ -58,7 +58,7 @@ const trendingProducts = [
   {
     id: 2,
     name: 'Son môi cao cấp',
-    image: '/product2.jpg',
+    image: '/product10.jpg',
     price: '450.000đ',
     rating: 4.8,
     reviews: 256,
@@ -67,7 +67,7 @@ const trendingProducts = [
   {
     id: 3,
     name: 'Tai nghe không dây',
-    image: '/product3.jpg',
+    image: '/product9.jpg',
     price: '2.990.000đ',
     rating: 4.6,
     reviews: 89,
@@ -207,12 +207,37 @@ const GuestHome = () => {
                   },
                 }}
               >
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={product.image}
-                  alt={product.name}
-                />
+                <Box sx={{ 
+                  position: 'relative',
+                  width: '100%',
+                  paddingTop: '100%', // Tạo tỷ lệ khung hình 1:1
+                  overflow: 'hidden'
+                }}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'transform 0.2s'
+                    }}
+                  />
+                  <IconButton
+                    sx={{
+                      position: 'absolute',
+                      top: 8,
+                      right: 8,
+                      bgcolor: 'white',
+                      '&:hover': { bgcolor: 'grey.100' },
+                    }}
+                  >
+                    <Favorite />
+                  </IconButton>
+                </Box>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography gutterBottom variant="h6" component="h3">
                     {product.name}
@@ -249,18 +274,6 @@ const GuestHome = () => {
                   >
                     Thêm vào giỏ
                   </Button>
-                  <IconButton
-                    color="secondary"
-                    sx={{
-                      position: 'absolute',
-                      top: 8,
-                      right: 8,
-                      bgcolor: 'white',
-                      '&:hover': { bgcolor: 'white' },
-                    }}
-                  >
-                    <Favorite />
-                  </IconButton>
                 </Box>
               </Card>
             </Grid>

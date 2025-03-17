@@ -19,6 +19,7 @@ import {
   Store,
   LocalOffer,
 } from '@mui/icons-material';
+import { useRouter } from 'next/router';
 import ClientLayout from '../layouts/ClientLayout';
 
 // Mẫu dữ liệu giỏ hàng
@@ -62,6 +63,7 @@ const initialCartItems = [
 ];
 
 const CartPage = () => {
+  const router = useRouter();
   const [cartItems, setCartItems] = useState(initialCartItems);
   const [voucher, setVoucher] = useState('');
 
@@ -117,6 +119,12 @@ const CartPage = () => {
     }).format(price);
   };
 
+  const handleCheckout = () => {
+    // Lưu thông tin giỏ hàng vào localStorage hoặc state management
+    localStorage.setItem('checkoutItems', JSON.stringify(cartItems.filter(item => item.selected)));
+    router.push('/checkout');
+  };
+
   return (
     <ClientLayout>
       <Container maxWidth="lg" sx={{ py: 3 }}>
@@ -129,6 +137,7 @@ const CartPage = () => {
               variant="contained"
               color="primary"
               sx={{ textTransform: 'none' }}
+              onClick={() => router.push('/')}
             >
               Mua sắm ngay
             </Button>
@@ -304,6 +313,7 @@ const CartPage = () => {
                       variant="contained"
                       color="primary"
                       disabled={selectedCount === 0}
+                      onClick={handleCheckout}
                       sx={{
                         textTransform: 'none',
                         minWidth: 150,
