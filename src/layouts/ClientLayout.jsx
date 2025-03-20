@@ -98,7 +98,7 @@ const ClientLayout = ({ children }) => {
             }}>
               {/* Left Links */}
               <Box sx={{ display: 'flex', gap: 3 }}>
-                <Link href="#" style={{ 
+                <Link href="/seller/welcome" style={{ 
                   textDecoration: 'none',
                   color: 'inherit',
                   display: 'flex',
